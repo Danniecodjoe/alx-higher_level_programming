@@ -1,8 +1,10 @@
 #!/usr/bin/node
-if (!process.argv[2] || !process.argv[3]) {
-	  console.log(0);
-} else {
-	  const args = process.argv.slice(2);
-	  const intArgs = args.sort((a, b) => a - b);
-	  console.log(intArgs[intArgs.length - 2]);
+const { argv } = require('node:process');
+const numbers = [];
+argv.forEach((num) => numbers.push(Number(num)));
+
+if (argv[3]) {
+  console.log(numbers.splice(2).sort((a, b) => a - b).slice(-2)[0]);
+} else if (argv.length < 5 || !isNaN(Number(numbers[2]))) {
+  console.log(0);
 }
