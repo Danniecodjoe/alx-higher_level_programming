@@ -1,7 +1,12 @@
 #!/usr/bin/node
-const fs = require('fs');
 
-fs.writeFile(process.argv[2], process.argv[3], error => {
-  if (error) console.log(error);
+const { argv } = require('node:process');
+const { writeFile } = require('node:fs');
+
+const file = argv[2];
+const content = argv[3];
+
+writeFile(file, content, (err) => {
+  if (err) throw err;
 });
 
